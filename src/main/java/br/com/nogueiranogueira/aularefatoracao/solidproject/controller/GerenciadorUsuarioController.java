@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/gerenciador/usuarios")
 public class GerenciadorUsuarioController {
+
     @Autowired
     private GerenciadorUsuarioService gerenciadorUsuarioService;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<String> criarUsuario(@RequestBody UsuarioDTO usuario) {
         try {
             gerenciadorUsuarioService.criarUsuario(usuario);

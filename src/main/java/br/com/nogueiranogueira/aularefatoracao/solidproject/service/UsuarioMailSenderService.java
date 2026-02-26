@@ -1,6 +1,5 @@
 package br.com.nogueiranogueira.aularefatoracao.solidproject.service;
 
-import br.com.nogueiranogueira.aularefatoracao.solidproject.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,20 +7,11 @@ import org.springframework.stereotype.Service;
 public class UsuarioMailSenderService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    private SmtpEmailService smtpEmailService;
-
-    public UsuarioMailSenderService() {
-        this.smtpEmailService = new SmtpEmailService();
-    }
+    private EmailService emailService; // DIP: depende da abstração, não da implementação
 
     public void enviarEmailBoasVindas(String email) {
-        // Lógica para enviar email de boas-vindas
         String assunto = "Bem-vindo ao nosso sistema!";
         String mensagem = "Olá! Obrigado por se cadastrar em nosso sistema.";
-        smtpEmailService.sendEmail(email, assunto, mensagem);
+        emailService.enviarEmail(email, assunto, mensagem);
     }
-
-
 }
